@@ -1,0 +1,33 @@
+{% load staticfiles %}
+<div class="banner">
+      <div id="slide-holder">
+        <div id="slide-runner">
+            {% load myfilter %}
+            {% for i in ad_imgurl_list %}
+            <a href="javascript:void(0)" target="_blank">
+            <img id="slide-img-{{i|get_index:ad_imgurl_list}}" src="/uploads/{{i.image_url}}" alt="" /></a>
+            {% endfor %}
+
+          <div id="slide-controls">
+            <p id="slide-client" class="text"><strong></strong><span></span></p>
+            <p id="slide-desc" class="text"></p>
+            <p id="slide-nav"></p>
+          </div>
+        </div>
+      </div>
+      <script>
+    if(!window.slider) {
+    var slider={};
+  }
+
+  slider.data= [
+     {% for i in ad_imgurl_list %}
+            {
+                "id":"slide-img-{{i|get_index:ad_imgurl_list}}", // 涓巗lide-runner涓殑img鏍囩id瀵瑰簲
+                "client":"{{i.title}}",
+                "desc":"{{i.description}}" //杩欓噷淇敼鎻忚堪
+            },
+		{% endfor %}
+        ];
+    </script>
+    </div>

@@ -1,0 +1,43 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="utf-8">
+		<link href="{% static 'css/reglogin.css' %}" rel='stylesheet' type='text/css' />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<div class="main">
+		<div class="header" >
+			<h1>注册一个新帐号</h1>
+		</div>
+		<p></p>
+			<form action="{% url 'reg' %}" method="post">
+                {% csrf_token %}
+				<ul class="left-form">
+					<h2>新的账号:</h2>
+					<li>
+						{{ reg_form.username }} <!--取出表单对象reg_form对应的元素---views里返回的reg_from对象-->
+						<div class="clear"> </div>
+					</li> 
+					<li>
+						{{ reg_form.email }}
+						<div class="clear"> </div>
+					</li> 
+					<!--<li>
+						{{ reg_form.url }}
+						<div class="clear"> </div>
+					</li>-->
+					<li>
+                        {{ reg_form.password }}
+						<div class="clear"> </div>
+					</li>
+                   	<input type="hidden" name="source_url" value="{{ request.META.HTTP_REFERER }}">
+					<input type="submit" value="注册并登录">
+					<div class="clear"> </div>
+				</ul>
+				<div class="clear"> </div>
+			</form>
+	</div>
+</body>
+</html>

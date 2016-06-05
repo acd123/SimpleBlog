@@ -1,0 +1,16 @@
+2016-05-30 18:59:33,048 [DummyThread-15:45491216] [blog.views:164] [views:do_reg] [ERROR]- (1062, "Duplicate entry 'admin' for key 'username'")
+2016-05-30 18:59:35,170 [DummyThread-17:45491216] [blog.views:164] [views:do_reg] [ERROR]- (1062, "Duplicate entry 'admin' for key 'username'")
+2016-05-30 18:59:37,251 [DummyThread-19:45491216] [blog.views:164] [views:do_reg] [ERROR]- (1062, "Duplicate entry 'admin' for key 'username'")
+2016-05-30 18:59:47,534 [DummyThread-21:45491216] [blog.views:164] [views:do_reg] [ERROR]- (1062, "Duplicate entry 'admin' for key 'username'")
+2016-05-30 19:00:26,796 [DummyThread-24:45491216] [blog.views:164] [views:do_reg] [ERROR]- Reverse for '' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+2016-05-30 19:27:39,069 [DummyThread-27:45491216] [blog.views:164] [views:do_reg] [ERROR]- (1062, "Duplicate entry 'adminss' for key 'username'")
+2016-05-30 19:28:41,052 [DummyThread-30:45491216] [blog.views:164] [views:do_reg] [ERROR]- (1062, "Duplicate entry 'admin' for key 'username'")
+2016-05-30 19:28:45,018 [DummyThread-32:45491216] [blog.views:164] [views:do_reg] [ERROR]- (1062, "Duplicate entry 'admin' for key 'username'")
+2016-05-30 19:28:51,022 [DummyThread-34:45491216] [blog.views:164] [views:do_reg] [ERROR]- (1062, "Duplicate entry 'admin' for key 'username'")
+2016-05-30 20:32:26,339 [Thread-56:140455308285696] [blog.views:164] [views:do_reg] [ERROR]- Reverse for '' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+2016-05-30 20:34:17,291 [Thread-68:140455198430976] [blog.views:164] [views:do_reg] [ERROR]- Reverse for '' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+2016-05-31 15:36:29,752 [DummyThread-38:54151120] [blog.views:189] [views:do_login] [ERROR]- Reverse for '' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+2016-05-31 17:13:47,270 [DummyThread-45:50438704] [blog.views:65] [views:archive] [ERROR]- unsupported operand type(s) for +: 'NoneType' and 'str'
+2016-05-31 17:13:47,291 [DummyThread-33:50414128] [blog.views:65] [views:archive] [ERROR]- unsupported operand type(s) for +: 'NoneType' and 'str'
+2016-05-31 18:29:26,668 [DummyThread-36:50414128] [blog.views:75] [views:tag] [ERROR]- Tag matching query does not exist.
+2016-05-31 18:29:28,110 [DummyThread-37:50414128] [blog.views:75] [views:tag] [ERROR]- Tag matching query does not exist.

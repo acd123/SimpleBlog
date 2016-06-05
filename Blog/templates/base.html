@@ -1,0 +1,147 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{{ SITE_NAME }}</title>
+<meta name="keywords" content="{{ SITE_NAME }}" />
+<meta name="description" content="{{ SITE_DESC }}" />
+<link href="{% static 'css/base.css' %}" rel="stylesheet">
+<link href="{% static 'css/index.css' %}" rel="stylesheet">
+{% block custom_css %}{% endblock %}
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sliders.js' %}"></script>
+<!--[if lt IE 9]>
+<script src="js/modernizr.js"></script>
+<![endif]-->
+{% block custom_js %}{% endblock %}
+</head>
+<div><a href="#" name=TOP></a></div>
+<body>
+<header>
+  <div class="logo">
+      <h1>{{ SITE_NAME }}</h1>
+      <p>{{ SITE_DESC }}</p>
+  </div>
+  <nav id="topnav" class="f_r">
+    <ul>
+      <a href="/">首页</a>
+      {% for category in category_list %}
+      <!--在views的global_setting配置category_list里找到 -->
+      <a href="{% url 'category' %}?id={{ category.id }}">{{ category.name }}</a>
+      {% endfor %}
+    </ul>
+    <script src="{% static 'js/nav.js' %}"></script>
+  </nav>
+</header>
+<article>
+  <div class="l_box f_l">
+      {% block left_content %}{% endblock %}
+  </div>
+  <div class="r_box f_r">
+    <div class="tit01">
+      {% if not request.user.is_authenticated %}
+      <h3 name="h3guan">关于本站&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'login' %}">登录</a>&nbsp;|&nbsp;<a href="{% url 'reg' %}">注册</a></h3>
+      {% else %}
+      <h3 name="h3guan">关于本站&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{{ request.user.username }}</b>&nbsp;|&nbsp;<a href="{% url 'logout' %}">注销&nbsp;&nbsp;</a></h3>
+      {% endif %}
+      <div class="gzwm">
+        <ul>
+          <li><p>本博客以 django web 框架开发</p></li>
+          <li><p>本次开发仅为Python练手小项目其他功能后续丰富</p></li>
+          <li><p>基础环境：阿里云主机 CentOS7</p></li>
+          <li><p id="h3a">开发者：渊虹&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a style="text-decoration:underline;" href="https://github.com/heming90915" target="_blank">GitHub</a></p></li>
+          <li><p>邮箱：heming90915@aliyun.com</p></li>
+        </ul>
+      </div>
+    </div>
+    <!--tit01 end-->
+    <div class="moreSelect" id="lp_right_select">
+      <script>
+window.onload = function ()
+{
+  var oLi = document.getElementById("tab").getElementsByTagName("li");
+  var oUl = document.getElementById("ms-main").getElementsByTagName("div");
+
+  for(var i = 0; i < oLi.length; i++)
+  {
+    oLi[i].index = i;
+    oLi[i].onmouseover = function ()
+    {
+      for(var n = 0; n < oLi.length; n++) oLi[n].className="";
+      this.className = "cur";
+      for(var n = 0; n < oUl.length; n++) oUl[n].style.display = "none";
+      oUl[this.index].style.display = "block"
+    }
+  }
+}
+</script>
+      <div class="ms-top">
+        <ul class="hd" id="tab">
+          <li class="cur"><a href="/">浏览排行</a></li>
+          <li><a href="/">评论排行</a></li>
+          <li><a href="/">站长推荐</a></li>
+        </ul>
+      </div>
+      <div class="ms-main" id="ms-main">
+        <div style="display: block;" class="bd bd-news" >
+          <ul>
+            {% for article in article_click_list %}<!--在views的global_setting配置article_click_list里找到 -->
+            <li><a href="{% url 'article' %}?id={{ article.id }}" >{{ article.title | slice:':50' }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div  class="bd bd-news">
+          <ul>
+            {% for article in article_comment_list %}<!--在views的global_setting配置article_comment_list里找到 -->
+            <li><a href="{% url 'article' %}?id={{ article.id }}" >{{ article.title | slice:':50' }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="bd bd-news">
+          <ul>
+            {% for article in article_recommend_list %}<!--在views的global_setting配置article_recommend_list里找到 -->
+            <li><a href="{% url 'article' %}?id={{ article.id }}"  >{{ article.title | slice:':50' }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <!--ms-main end -->
+    </div>
+    <!--切换卡 moreSelect end -->
+
+    <div class="cloud">
+      <h3>标签云</h3>
+      <ul>
+        {% for tag in tag_list %} <!--在views的global_setting配置tag_list里找到 -->
+        <li><a href="{% url 'tag' %}?id={{tag.id}}">{{ tag.name}}</a></li> <!--给出链接到tag页面并携带tag的name值 处理方式URL里找对应视图函数 -->
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="tuwen">
+      <h3>文章归档</h3>
+      <ul>
+        {% for archive in archive_list %}<!--在views的global_setting配置archive_list里找到 -->
+        <li>
+          <p><span class="tutime font-size-18"><a href='{% url 'archive' %}?year={{ archive | slice:":4" }}&month={{ archive | slice:"5:7" }}'>{{ archive }}</a></span></p>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="links">
+      <h3>友情链接</h3>
+      <ul>
+        {% for links in links_list %}<!--在views的global_setting配置links_list里找到 -->
+        <li><a href="{{ links.callback_url }}">{{ links.title}}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <!--r_box end -->
+</article>
+<footer>
+  <a style="text-decoration: none" href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action" target="_blank"><p class="ft-copyright">渊虹-个人博客 &nbsp;&nbsp;粤ICP备16031258号-1 </p></a>
+  <div id="tbox"><!-- <a id="togbook" href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action"> </a>--> <a href="#Top" id="gotop" ></a> </div>
+</footer>
+</body>
+</html>
